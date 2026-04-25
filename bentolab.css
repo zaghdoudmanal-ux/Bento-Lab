@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bento Lab – Create Your Own Bento Cake | Rabat, Maroc</title>
+    <meta name="description"
+        content="Bento Lab propose des kits DIY de bento cakes à décorer soi-même. Une expérience créative, esthétique et fun à partager entre amis ou en couple. Commandez votre kit à Rabat, Maroc." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="#" class="logo" id="nav-logo">
+                <span class="logo-icon">✦</span> Bento Lab
+            </a>
+            <div class="nav-links">
+                <a href="#concept" class="nav-link">Le Concept</a>
+                <a href="#configurator" class="nav-link">Configurateur</a>
+                <a href="#event-packs" class="nav-link">Packs</a>
+                <a href="#configurator" class="btn btn-nav" id="nav-cta-btn">Créer mon Bento</a>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#concept" class="mobile-link">Le Concept</a>
+            <a href="#configurator" class="mobile-link">Configurateur</a>
+            <a href="#event-packs" class="mobile-link">Packs</a>
+            <a href="#configurator" class="btn btn-primary mobile-cta">Créer mon Bento</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="images/hero_kit.png" alt="Bento Lab DIY Cake Kit" class="hero-img" />
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge animate-fade-up">✦ Livraison à Rabat &amp; alentours</div>
+            <h1 class="hero-title animate-fade-up delay-1">
+                Et si votre prochain moment<br />
+                <em>inoubliable</em> commençait<br />
+                avec une poche à douille ?
+            </h1>
+            <p class="hero-sub animate-fade-up delay-2">
+                Pas juste un gâteau. Une expérience créative, esthétique et émotionnelle<br class="hide-mobile" />
+                à vivre seul(e), entre amis ou en amoureux.
+            </p>
+            <div class="hero-ctas animate-fade-up delay-3">
+                <a href="#configurator" class="btn btn-primary" id="hero-cta-btn">Créer mon Bento Cake ✦</a>
+                <a href="#concept" class="btn btn-ghost" id="hero-learn-btn">Découvrir le concept ↓</a>
+            </div>
+            <div class="hero-trust animate-fade-up delay-4">
+                <div class="trust-item"><span class="trust-icon">🌸</span> 100% fait maison</div>
+                <div class="trust-sep">·</div>
+                <div class="trust-item"><span class="trust-icon">✨</span> Kit complet inclus</div>
+                <div class="trust-sep">·</div>
+                <div class="trust-item"><span class="trust-icon">📦</span> Livraison à Rabat</div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            <span>scroll</span>
+        </div>
+    </section>
+
+    <!-- FLOATING PILLS -->
+    <div class="pills-section">
+        <div class="pills-track">
+            <div class="pill">🎂 Bento Cake DIY</div>
+            <div class="pill">✨ Instagrammable</div>
+            <div class="pill">🌸 Créativité</div>
+            <div class="pill">💕 Date Night</div>
+            <div class="pill">👯 Girls Night In</div>
+            <div class="pill">🎨 Art thérapie</div>
+            <div class="pill">🎂 Bento Cake DIY</div>
+            <div class="pill">✨ Instagrammable</div>
+            <div class="pill">🌸 Créativité</div>
+            <div class="pill">💕 Date Night</div>
+            <div class="pill">👯 Girls Night In</div>
+            <div class="pill">🎨 Art thérapie</div>
+        </div>
+    </div>
+
+    <!-- CONCEPT SECTION -->
+    <section class="concept" id="concept">
+        <div class="container">
+            <div class="section-label animate-on-scroll">Le Concept</div>
+            <h2 class="section-title animate-on-scroll">
+                Plus qu'un gâteau,<br /><em>une expérience</em>
+            </h2>
+            <p class="section-sub animate-on-scroll">
+                Bento Lab vous livre tout ce qu'il faut pour créer votre propre chef-d'œuvre sucré.<br />
+                Pas besoin d'être pâtissier. Juste envie de vous exprimer.
+            </p>
+
+            <div class="concept-grid">
+                <div class="concept-card animate-on-scroll" id="concept-card-1">
+                    <div class="concept-img-wrap">
+                        <img src="images/cake.png" alt="Bento cake décoré" />
+                    </div>
+                    <div class="concept-card-body">
+                        <div class="concept-tag">L'expérience</div>
+                        <h3>Un kit pensé pour vous émerveiller</h3>
+                        <p>Chaque kit Bento Lab est une boîte pleine de possibilités : base de gâteau, crèmes pastel,
+                            décorations florales, outils de pro. Tout est là. Il ne reste plus qu'à laisser parler votre
+                            créativité.</p>
+                    </div>
+                </div>
+
+                <div class="concept-features animate-on-scroll">
+                    <div class="feature-item" id="feature-creativity">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-text">
+                            <h4>Créativité sans limite</h4>
+                            <p>Chaque gâteau est unique. Votre style, vos couleurs, votre art.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item" id="feature-relax">
+                        <div class="feature-icon">🧘</div>
+                        <div class="feature-text">
+                            <h4>Détente & mindfulness</h4>
+                            <p>Décorer un gâteau, c'est méditer avec du glaçage. Un moment rien qu'à vous.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item" id="feature-share">
+                        <div class="feature-icon">📸</div>
+                        <div class="feature-text">
+                            <h4>Moments à capturer</h4>
+                            <p>Chaque création est un contenu. Partagez votre œuvre, inspirez votre feed.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item" id="feature-gift">
+                        <div class="feature-icon">🎁</div>
+                        <div class="feature-text">
+                            <h4>Le cadeau le plus original</h4>
+                            <p>Offrez une expérience, pas un objet. Pour un anniversaire, une occasion ou juste parce
+                                que.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOMENTS SECTION -->
+    <section class="moments" id="moments">
+        <div class="container">
+            <div class="section-label animate-on-scroll">Vos moments</div>
+            <h2 class="section-title animate-on-scroll">
+                Pour chaque moment<br /><em>qui compte</em>
+            </h2>
+        </div>
+        <div class="moments-grid">
+            <div class="moment-card animate-on-scroll" id="moment-friends">
+                <div class="moment-img-wrap">
+                    <img src="images/friends.png" alt="Amies qui décorent des bento cakes ensemble" />
+                    <div class="moment-overlay"></div>
+                </div>
+                <div class="moment-caption">
+                    <div class="moment-emoji">👯‍♀️</div>
+                    <h3>Girls Night In</h3>
+                    <p>Votre soirée entre amies vient de passer au niveau supérieur.</p>
+                </div>
+            </div>
+
+            <div class="moment-card animate-on-scroll" id="moment-solo">
+                <div class="moment-img-wrap">
+                    <img src="images/hands.png" alt="Décoration d'un bento cake en gros plan" />
+                    <div class="moment-overlay"></div>
+                </div>
+                <div class="moment-caption">
+                    <div class="moment-emoji">🌙</div>
+                    <h3>Solo & Self-Care</h3>
+                    <p>Du temps pour vous. Créez quelque chose de beau, juste pour vous.</p>
+                </div>
+            </div>
+
+            <div class="moment-card animate-on-scroll" id="moment-date">
+                <div class="moment-img-wrap">
+                    <img src="images/cake.png" alt="Bento cake romantique" />
+                    <div class="moment-overlay"></div>
+                </div>
+                <div class="moment-caption">
+                    <div class="moment-emoji">💕</div>
+                    <h3>Date Night Original</h3>
+                    <p>Oubliez le restaurant. Ce soir, vous créez quelque chose ensemble.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-label animate-on-scroll">Simple & Magique</div>
+            <h2 class="section-title animate-on-scroll">
+                Comment ça marche ?<br /><em>En 3 étapes</em>
+            </h2>
+
+            <div class="steps">
+                <div class="step animate-on-scroll" id="step-1">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <div class="step-icon">📦</div>
+                        <h3>Vous recevez votre kit</h3>
+                        <p>Une belle boîte livrée à votre porte contenant la base du gâteau, les crèmes colorées, les
+                            décorations et tous les outils. Tout est inclus, rien à acheter en plus.</p>
+                    </div>
+                    <div class="step-connector"></div>
+                </div>
+
+                <div class="step animate-on-scroll" id="step-2">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <div class="step-icon">🎨</div>
+                        <h3>Vous créez votre chef-d'œuvre</h3>
+                        <p>Suivez notre guide illustré ou laissez libre cours à votre imagination. Fleurs, motifs,
+                            couleurs... votre gâteau, votre signature. Prenez votre temps, savourez le moment.</p>
+                    </div>
+                    <div class="step-connector"></div>
+                </div>
+
+                <div class="step animate-on-scroll" id="step-3">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <div class="step-icon">✨</div>
+                        <h3>Vous capturez &amp; dégustez</h3>
+                        <p>Prenez la photo, partagez l'instant, puis dégustez votre création. Un souvenir et un gâteau
+                            délicieux pour le prix d'un seul moment magique.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS STRIP -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testi-grid">
+                <div class="testi-card animate-on-scroll" id="testi-1">
+                    <div class="testi-stars">★★★★★</div>
+                    <p>"J'ai offert un kit Bento Lab à ma meilleure amie pour son anniversaire. Elle m'a dit que c'était
+                        le meilleur cadeau qu'elle ait jamais reçu."</p>
+                    <div class="testi-author">— Salma R., Rabat</div>
+                </div>
+                <div class="testi-card animate-on-scroll" id="testi-2">
+                    <div class="testi-stars">★★★★★</div>
+                    <p>"Une activité parfaite pour une soirée en couple. On a ri, on a créé, on a mangé. On recommande
+                        les yeux fermés."</p>
+                    <div class="testi-author">— Amine &amp; Nour, Rabat</div>
+                </div>
+                <div class="testi-card animate-on-scroll" id="testi-3">
+                    <div class="testi-stars">★★★★★</div>
+                    <p>"Je suis nulle en cuisine mais j'ai réussi à faire un gâteau magnifique ! Le kit est vraiment
+                        bien pensé. Mon feed Instagram n'a jamais été aussi beau."</p>
+                    <div class="testi-author">— Yasmine K., Salé</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+       CONFIGURATEUR PRINCIPAL
+       ============================================ -->
+    <section class="configurator" id="configurator">
+        <div class="container">
+            <div class="section-label animate-on-scroll">🎂 Configure ton kit</div>
+            <h2 class="section-title animate-on-scroll">Crée ton bento cake<br /><em>exactement comme tu l'imagines</em>
+            </h2>
+            <p class="section-sub animate-on-scroll">Vois ton gâteau se transformer en temps réel. Chaque choix est
+                reflété instantanément.</p>
+        </div>
+
+        <div class="config-wrapper">
+
+            <!-- ── PANEL GAUCHE : Options ── -->
+            <div class="config-panel">
+
+                <!-- 01. Couleur du gâteau -->
+                <div class="cfg-group" id="cfg-color">
+                    <div class="cfg-group-header">
+                        <span class="cfg-num">01</span>
+                        <div>
+                            <div class="cfg-title">Couleur du gâteau</div>
+                            <div class="cfg-sub">La teinte de ta crème au beurre</div>
+                        </div>
+                    </div>
+                    <div class="color-palette" id="color-palette">
+                        <button class="pal-btn selected" data-color="blanc" id="pal-blanc" title="Blanc Vanille">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#FFFFFF,#FFF8F0,#EDE0D8)"></span>
+                            <span class="pal-name">Blanc</span>
+                        </button>
+                        <button class="pal-btn" data-color="noir" id="pal-noir" title="Noir Velours">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#4A4240,#2C2422,#1A1412)"></span>
+                            <span class="pal-name">Noir</span>
+                        </button>
+                        <button class="pal-btn" data-color="rouge" id="pal-rouge" title="Rouge Velours">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#F07070,#E05555,#C03535)"></span>
+                            <span class="pal-name">Rouge</span>
+                        </button>
+                        <button class="pal-btn" data-color="bleu" id="pal-bleu" title="Bleu Ciel">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#9BBFDD,#7BA7CC,#5A88AA)"></span>
+                            <span class="pal-name">Bleu</span>
+                        </button>
+                        <button class="pal-btn" data-color="vert" id="pal-vert" title="Vert Pistache">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#B8DDB0,#8EBE84,#6A9E60)"></span>
+                            <span class="pal-name">Vert</span>
+                        </button>
+                        <button class="pal-btn" data-color="rose" id="pal-rose" title="Rose Blush">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#FFE0E0,#F9C5C5,#E8A0A0)"></span>
+                            <span class="pal-name">Rose</span>
+                        </button>
+                        <button class="pal-btn" data-color="violet" id="pal-violet" title="Violet Lavande">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#E0D0F5,#C4A8E8,#9E7ED0)"></span>
+                            <span class="pal-name">Violet</span>
+                        </button>
+                        <button class="pal-btn" data-color="jaune" id="pal-jaune" title="Jaune Citron">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#FFE9A0,#F5D870,#D4B840)"></span>
+                            <span class="pal-name">Jaune</span>
+                        </button>
+                        <button class="pal-btn" data-color="marron" id="pal-marron" title="Chocolat Chaud">
+                            <span class="pal-dot"
+                                style="background:radial-gradient(circle at 35% 35%,#C09070,#8B6347,#6B4830)"></span>
+                            <span class="pal-name">Marron</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 02. Garniture -->
+                <div class="cfg-group" id="cfg-garnish">
+                    <div class="cfg-group-header">
+                        <span class="cfg-num">02</span>
+                        <div>
+                            <div class="cfg-title">Garniture intérieure</div>
+                            <div class="cfg-sub">La surprise à l'intérieur du gâteau</div>
+                        </div>
+                    </div>
+                    <div class="garnish-opts">
+                        <button class="garnish-opt selected" data-garnish="chocolat" id="garn-chocolat">
+                            <span class="garnish-emoji">🍫</span>
+                            <span class="garnish-lbl">Chocolat</span>
+                            <span class="garnish-desc">Fondant & intense</span>
+                        </button>
+                        <button class="garnish-opt" data-garnish="caramel" id="garn-caramel">
+                            <span class="garnish-emoji">🍯</span>
+                            <span class="garnish-lbl">Caramel</span>
+                            <span class="garnish-desc">Beurre salé & doux</span>
+                        </button>
+                        <button class="garnish-opt" data-garnish="fruits" id="garn-fruits">
+                            <span class="garnish-emoji">🍓</span>
+                            <span class="garnish-lbl">Fruits rouges</span>
+                            <span class="garnish-desc">Frais & acidulé</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 03. Poches à douille -->
+                <div class="cfg-group" id="cfg-bags">
+                    <div class="cfg-group-header">
+                        <span class="cfg-num">03</span>
+                        <div>
+                            <div class="cfg-title">Poches à douille</div>
+                            <div class="cfg-sub">2 incluses · +10 Dh à partir de la 3ème</div>
+                        </div>
+                    </div>
+
+                    <!-- Bag quantity stepper -->
+                    <div class="bags-qty-row">
+                        <span class="bags-qty-label">Quantité</span>
+                        <div class="bags-stepper">
+                            <button class="stepper-btn" id="bags-minus" aria-label="Moins">−</button>
+                            <span class="bags-count" id="bags-count">2</span>
+                            <button class="stepper-btn" id="bags-plus" aria-label="Plus">+</button>
+                        </div>
+                        <span class="bags-extra-badge" id="bags-extra-badge" style="display:none"></span>
+                    </div>
+
+                    <!-- Per-bag color pickers (rendered by JS) -->
+                    <div class="per-bag-pickers" id="per-bag-pickers">
+                        <!-- Each bag gets its own color row -->
+                    </div>
+
+                    <!-- Selected color dots preview -->
+                    <div class="bags-selected-dots" id="bags-selected-dots"></div>
+                </div>
+
+                <!-- 04. Extras gratuits -->
+                <div class="cfg-group" id="cfg-extras">
+                    <div class="cfg-group-header">
+                        <span class="cfg-num">04</span>
+                        <div>
+                            <div class="cfg-title">Extras gratuits ✨</div>
+                            <div class="cfg-sub">Inclus dans ton kit sans frais</div>
+                        </div>
+                    </div>
+                    <div class="extras-list">
+                        <label class="extra-item" id="extra-bougie-label">
+                            <input type="checkbox" id="extra-bougie" checked />
+                            <span class="extra-check-box"></span>
+                            <span class="extra-emoji">🕯️</span>
+                            <span class="extra-lbl">Bougie</span>
+                            <span class="extra-tag">Gratuit</span>
+                        </label>
+                        <label class="extra-item" id="extra-carte-label">
+                            <input type="checkbox" id="extra-carte" />
+                            <span class="extra-check-box"></span>
+                            <span class="extra-emoji">💌</span>
+                            <span class="extra-lbl">Carte message personnalisée</span>
+                            <span class="extra-tag">Gratuit</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div><!-- /config-panel -->
+
+            <!-- ── CENTRE : Aperçu gâteau ── -->
+            <div class="config-preview-col">
+                <div class="preview-label">✦ Aperçu en direct</div>
+                <div class="cake-stage" id="cake-stage">
+                    <!-- SVG cake rendered by JS -->
+                    <div id="cake-svg-mount"></div>
+                    <!-- Piping bags display -->
+                    <div class="bags-stage" id="bags-stage">
+                        <!-- Bags rendered by JS -->
+                    </div>
+                </div>
+                <div class="garnish-label-tag" id="garnish-label-tag">
+                    <span id="garnish-label-text">🍫 Garniture Chocolat</span>
+                </div>
+                <div class="color-label-tag" id="color-label-tag">
+                    <span id="color-label-text">Crème Blanc Vanille</span>
+                </div>
+            </div>
+
+            <!-- ── DROITE : Récapitulatif ── -->
+            <div class="config-summary-col">
+                <div class="order-card">
+                    <div class="order-card-hd">📝 Récapitulatif</div>
+                    <div class="order-lines">
+                        <div class="order-line">
+                            <span>Kit de base (gâteau + 2 poches)</span>
+                            <span class="order-line-price">140 Dh</span>
+                        </div>
+                        <div class="order-line" id="oline-extra-bags" style="display:none">
+                            <span id="oline-extra-bags-lbl">Poches supplémentaires (×0)</span>
+                            <span class="order-line-price" id="oline-extra-bags-price">+0 Dh</span>
+                        </div>
+                        <div class="order-line" id="oline-bag-colors">
+                            <span>Couleurs poches</span>
+                            <span class="order-line-price" style="display:flex;gap:4px;align-items:center"
+                                id="oline-bag-colors-dots"></span>
+                        </div>
+                        <div class="order-line order-line-free">
+                            <span>Bougie + Carte message</span>
+                            <span class="order-line-price free-tag">Gratuit</span>
+                        </div>
+                    </div>
+                    <div class="order-divider"></div>
+                    <div class="order-total-row">
+                        <span class="order-total-lbl">Total</span>
+                        <span class="order-total-price" id="total-price">140 Dh</span>
+                    </div>
+                    <button class="btn-create" id="btn-create-single">
+                        ✨ Créer mon Bento
+                    </button>
+                    <div class="order-trust-row">
+                        <span>📦 Livraison Rabat</span>
+                        <span>·</span>
+                        <span>💳 Paiement livraison</span>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /config-wrapper -->
+    </section>
+
+    <!-- ============================================
+       PACKS ÉVÉNEMENTS
+       ============================================ -->
+    <section class="event-packs" id="event-packs">
+        <div class="container">
+            <div class="section-label animate-on-scroll">🎁 Packs Événements</div>
+            <h2 class="section-title animate-on-scroll">Pour vos moments<br /><em>en groupe</em></h2>
+            <p class="section-sub animate-on-scroll">
+                Personnalisez chaque gâteau individuellement. Chaque invité, sa couleur, sa garniture.
+            </p>
+            <div class="packs-grid">
+
+                <!-- Pack 3 -->
+                <div class="pack-card animate-on-scroll" id="pack-3">
+                    <div class="pack-badge">Le Plus Populaire ⭐</div>
+                    <div class="pack-icon-row">🎂🎂🎂</div>
+                    <div class="pack-name">Pack 3 Bento</div>
+                    <div class="pack-occasion">Soirée entre amis · Goûter d'anniversaire</div>
+                    <div class="pack-price">420 Dh</div>
+                    <ul class="pack-features">
+                        <li>✓ 3 gâteaux personnalisables</li>
+                        <li>✓ 6 poches à douille (2 par gâteau)</li>
+                        <li>✓ Bougies &amp; cartes incluses</li>
+                        <li>✓ Livrés dans une belle boîte cadeau</li>
+                    </ul>
+                    <button class="btn-pack" data-pack="3" id="btn-pack-3">Personnaliser le pack 3 ✦</button>
+                </div>
+
+                <!-- Pack 4 -->
+                <div class="pack-card pack-card-featured animate-on-scroll" id="pack-4">
+                    <div class="pack-badge pack-badge-main">Best Seller 🔥</div>
+                    <div class="pack-icon-row">🎂🎂🎂🎂</div>
+                    <div class="pack-name">Pack 4 Bento</div>
+                    <div class="pack-occasion">Date night × 2 · Team building créatif</div>
+                    <div class="pack-price">560 Dh</div>
+                    <ul class="pack-features">
+                        <li>✓ 4 gâteaux personnalisables</li>
+                        <li>✓ 8 poches à douille (2 par gâteau)</li>
+                        <li>✓ Bougies &amp; cartes incluses</li>
+                        <li>✓ Boîte cadeau premium</li>
+                    </ul>
+                    <button class="btn-pack btn-pack-main" data-pack="4" id="btn-pack-4">Personnaliser le pack 4
+                        ✦</button>
+                </div>
+
+                <!-- Pack 6 -->
+                <div class="pack-card animate-on-scroll" id="pack-6">
+                    <div class="pack-badge">Grande Fête 🎉</div>
+                    <div class="pack-icon-row">🎂🎂🎂🎂🎂🎂</div>
+                    <div class="pack-name">Pack 6 Bento</div>
+                    <div class="pack-occasion">Anniversaire · EVJF · Afterwork</div>
+                    <div class="pack-price">840 Dh</div>
+                    <ul class="pack-features">
+                        <li>✓ 6 gâteaux personnalisables</li>
+                        <li>✓ 12 poches à douille (2 par gâteau)</li>
+                        <li>✓ Bougies &amp; cartes incluses</li>
+                        <li>✓ Livraison prioritaire</li>
+                    </ul>
+                    <button class="btn-pack" data-pack="6" id="btn-pack-6">Personnaliser le pack 6 ✦</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+       PACK BUILDER (Modal overlay pour les packs)
+       ============================================ -->
+    <div class="pack-modal" id="pack-modal" style="display:none">
+        <div class="pack-modal-inner">
+            <button class="pack-modal-close" id="pack-modal-close" aria-label="Fermer">✕</button>
+            <div class="pack-modal-title" id="pack-modal-title">Personnalise ton Pack 3 Bento</div>
+            <div class="pack-cakes-grid" id="pack-cakes-grid">
+                <!-- Rendered by JS -->
+            </div>
+            <div class="pack-total-row">
+                <span class="pack-total-lbl">Total pack :</span>
+                <span class="pack-total-price" id="pack-total-price">420 Dh</span>
+            </div>
+            <button class="btn-create" id="btn-pack-order">✨ Commander ce pack</button>
+        </div>
+    </div>
+
+    <!-- ============================================
+       CHECKOUT OVERLAY
+       ============================================ -->
+    <div class="checkout-overlay" id="checkout-overlay" style="display:none">
+        <div class="checkout-inner">
+            <button class="checkout-close" id="checkout-close" aria-label="Fermer">✕ Retour</button>
+
+            <div class="checkout-layout">
+
+                <!-- ORDER SUMMARY -->
+                <div class="checkout-summary">
+                    <div class="checkout-summary-title">🎂 Votre commande</div>
+                    <div id="checkout-order-display">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- FORM -->
+                <div class="checkout-form-col">
+                    <div class="checkout-form-title">📋 Vos coordonnées</div>
+                    <form id="checkout-form" class="checkout-form" novalidate>
+                        <div class="form-row">
+                            <label for="f-name">Nom complet *</label>
+                            <input type="text" id="f-name" placeholder="Ex: Salma Benali" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="f-phone">Téléphone *</label>
+                            <input type="tel" id="f-phone" placeholder="+212 6XX XXX XXX" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="f-address">Adresse complète *</label>
+                            <textarea id="f-address" rows="2" placeholder="Numéro, rue, quartier..."
+                                required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <label for="f-city">Ville *</label>
+                            <select id="f-city" required>
+                                <option value="">Choisir votre ville...</option>
+                                <option value="Rabat">Rabat</option>
+                                <option value="Salé">Salé</option>
+                                <option value="Témara">Témara</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="f-notes">Message / Notes (optionnel)</label>
+                            <textarea id="f-notes" rows="2"
+                                placeholder="Instructions de livraison, dédicace..."></textarea>
+                        </div>
+
+                        <div class="payment-section">
+                            <div class="payment-title">💳 Mode de paiement</div>
+                            <label class="payment-opt selected-payment">
+                                <input type="radio" name="payment" value="livraison" checked />
+                                <span class="payment-opt-box">
+                                    <span class="payment-opt-icon">🚚</span>
+                                    <span>
+                                        <strong>Paiement à la livraison</strong>
+                                        <small>Disponible à Rabat, Salé, Témara</small>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="payment-opt">
+                                <input type="radio" name="payment" value="carte" />
+                                <span class="payment-opt-box">
+                                    <span class="payment-opt-icon">💳</span>
+                                    <span>
+                                        <strong>Carte bancaire</strong>
+                                        <small>Bientôt disponible</small>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="checkout-total-bar">
+                            <span>Total à payer</span>
+                            <span class="checkout-final-price" id="checkout-final-price">140 Dh</span>
+                        </div>
+
+                        <button type="button" class="btn-submit-order" id="btn-submit-order" onclick="submitOrder()">
+                            ✅ Confirmer ma commande
+                        </button>
+                        <p class="checkout-note">Votre commande est enregistrée directement sur notre système.
+                            Confirmation immédiate.</p>
+                    </form>
+
+                    <!-- ── CONFIRMATION SCREEN ── -->
+                    <div id="order-confirmation"
+                        style="display:none; flex-direction:column; align-items:center; gap:24px; text-align:center; padding:20px 0;">
+                        <canvas id="confetti-canvas"
+                            style="display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;"></canvas>
+                        <div style="font-size:4rem; animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;">🎉
+                        </div>
+                        <div style="font-family:var(--font-display);font-size:2rem;font-weight:400;color:var(--dark);">
+                            Commande confirmée !</div>
+                        <div id="conf-cake-preview"
+                            style="width:120px;height:120px;margin:0 auto;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.18));">
+                        </div>
+                        <div
+                            style="background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px 28px;width:100%;max-width:340px;">
+                            <div
+                                style="font-size:0.75rem;color:var(--mid);font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">
+                                Numéro de commande</div>
+                            <div id="conf-order-number"
+                                style="font-family:var(--font-display);font-size:2rem;font-weight:500;color:var(--dark);margin-bottom:16px;">
+                            </div>
+                            <div style="font-size:0.88rem;color:var(--dark-soft);margin-bottom:4px;">Bonjour <strong
+                                    id="conf-name"></strong> ! 👋</div>
+                            <div style="font-size:0.82rem;color:var(--light-text);">Votre commande de <strong
+                                    id="conf-total"></strong> a bien été reçue.</div>
+                        </div>
+                        <div
+                            style="background:var(--green-light,#E8F5EE);border:1px solid #B8DDC8;border-radius:12px;padding:16px 20px;width:100%;max-width:340px;font-size:0.85rem;color:#2E7D52;line-height:1.6;">
+                            📦 Votre commande est en cours de préparation.<br />
+                            Nous vous contacterons très prochainement pour confirmer la livraison.
+                        </div>
+                        <button type="button" class="checkout-close-btn" onclick="closeCheckout()"
+                            style="padding:12px 28px;background:var(--cream);border:1.5px solid var(--border);border-radius:100px;font-family:var(--font-body);font-size:0.88rem;cursor:pointer;transition:all 0.2s;">
+                            ← Retour à la boutique
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="checkout-note">Vous serez redirigé(e) vers WhatsApp avec votre commande pré-remplie. Notre équipe confirme
+        sous 30 min.</p>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <!-- FINAL CTA -->
+    <section class="cta-section" id="order">
+        <div class="cta-bg">
+            <img src="images/hero_kit.png" alt="Bento Lab kit" class="cta-bg-img" />
+            <div class="cta-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <div class="section-label light">Prêt(e) à créer ?</div>
+                <h2 class="cta-title">
+                    Votre prochaine aventure<br /><em>créative vous attend</em>
+                </h2>
+                <p class="cta-sub">
+                    Commandez votre Bento Lab Kit aujourd'hui.<br />
+                    Livraison à Rabat et alentours. Kits disponibles en quantité limitée.
+                </p>
+                <div class="cta-actions">
+                    <a href="#" class="btn btn-primary btn-large" id="order-cta-btn">Commander mon kit ✦</a>
+                    <a href="https://instagram.com" target="_blank" class="btn btn-outline" id="insta-btn">Voir nos
+                        créations sur Instagram</a>
+                </div>
+                <div class="cta-detail">
+                    <span>📦 Livraison rapide</span>
+                    <span>·</span>
+                    <span>🌸 Kit complet</span>
+                    <span>·</span>
+                    <span>💌 Parfait cadeau</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="footer-logo">✦ Bento Lab</div>
+                    <p>L'expérience bento cake DIY.<br />Rabat, Maroc. 🇲🇦</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com" target="_blank" class="social-link" id="footer-insta"
+                            aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <circle cx="12" cy="12" r="4" />
+                                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/212600000000" target="_blank" class="social-link" id="footer-whatsapp"
+                            aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Navigation</h4>
+                    <a href="#concept">Le Concept</a>
+                    <a href="#moments">Moments</a>
+                    <a href="#how-it-works">Comment ça marche</a>
+                    <a href="#order">Commander</a>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Contact</h4>
+                    <a href="mailto:hello@bentolab.ma">hello@bentolab.ma</a>
+                    <a href="https://wa.me/212600000000">WhatsApp</a>
+                    <span>Rabat, Maroc 🇲🇦</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Bento Lab. Tous droits réservés. Fait avec 🌸 à Rabat.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
