@@ -1,4 +1,4 @@
-alert("script chargé"); 
+ 
 }
 // =============================================
 // BENTO LAB — Full Interactive Script
@@ -641,7 +641,6 @@ async function submitOrder() {
   };
 
   try {
-   try {
     const orders = JSON.parse(localStorage.getItem("orders") || "[]");
 orders.push(payload);
 localStorage.setItem("orders", JSON.stringify(orders));
