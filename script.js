@@ -639,11 +639,13 @@ async function submitOrder() {
   };
 
   try {
-    const res = await fetch('/api/orders', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+    });const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+orders.push(payload);
+
+localStorage.setItem("orders", JSON.stringify(orders));
+
+showConfirmation({}, name, totalPrice);
 
     if (!res.ok) {
       const err = await res.json();
