@@ -640,11 +640,18 @@ async function submitOrder() {
   };
 
   try {
-   const res = await fetch('/api/orders', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(payload),
-});
+   try {
+  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+  orders.push(payload);
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  showConfirmation({}, name, totalPrice);
+
+} catch (e) {
+  console.log("Erreur commande:", e);
+}
 
     if (!res.ok) {
       const err = await res.json();
