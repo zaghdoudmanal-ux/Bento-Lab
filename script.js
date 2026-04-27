@@ -640,13 +640,11 @@ async function submitOrder() {
   };
 
   try {
-    });const orders = JSON.parse(localStorage.getItem("orders") || "[]");
-
-orders.push(payload);
-
-localStorage.setItem("orders", JSON.stringify(orders));
-
-showConfirmation({}, name, totalPrice);
+   const res = await fetch('/api/orders', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload),
+});
 
     if (!res.ok) {
       const err = await res.json();
