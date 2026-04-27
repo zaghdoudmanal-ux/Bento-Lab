@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bento Lab — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blush: #E8A0A0; --blush-light: #FDF0F0; --dark: #1C1410;
+      --mid: #8A7A72; --border: #EDE5E0; --cream: #FAF6F3;
+      --green: #2E7D52; --green-light: #E8F5EE; --orange: #D4700A;
+      --orange-light: #FEF3E7; --red: #C02020; --red-light: #FEE8E8;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--dark); min-height: 100vh; }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #FDF0F0 0%, #F0EAF8 100%);
+    }
+    .login-box {
+      background: white; border-radius: 20px; padding: 48px 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12); width: 100%; max-width: 400px; text-align: center;
+    }
+    .login-logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; margin-bottom: 8px; }
+    .login-sub { font-size: 0.82rem; color: var(--mid); margin-bottom: 32px; }
+    .login-input {
+      width: 100%; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem; margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .login-input:focus { outline: none; border-color: var(--blush); }
+    .login-btn {
+      width: 100%; padding: 14px; background: linear-gradient(135deg, #E8A0A0, #D4C5E2);
+      border: none; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 1rem;
+      font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+      color: var(--dark);
+    }
+    .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,160,160,0.4); }
+    .login-error { color: var(--red); font-size: 0.82rem; margin-top: 10px; min-height: 20px; }
+
+    /* ── ADMIN PANEL ── */
+    #admin-panel { display: none; }
+    .admin-nav {
+      background: white; border-bottom: 1px solid var(--border);
+      padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .admin-nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; }
+    .admin-nav-brand span { color: var(--blush); }
+    .admin-nav-right { display: flex; align-items: center; gap: 16px; }
+    .logout-btn {
+      padding: 8px 18px; border: 1.5px solid var(--border); border-radius: 100px;
+      font-family: 'Inter', sans-serif; font-size: 0.82rem; cursor: pointer;
+      background: none; color: var(--mid); transition: all 0.2s;
+    }
+    .logout-btn:hover { border-color: var(--blush); color: var(--dark); }
+
+    .admin-body { max-width: 1200px; margin: 0 auto; padding: 40px 32px; }
+    .admin-header { margin-bottom: 32px; }
+    .admin-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; margin-bottom: 4px; }
+    .admin-subtitle { font-size: 0.85rem; color: var(--mid); }
+
+    /* Stats */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+    .stat-card {
+      background: white; border-radius: 14px; border: 1px solid var(--border);
+      padding: 20px 24px; display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-card .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; color: var(--dark); }
+    .stat-card .stat-lbl { font-size: 0.78rem; color: var(--mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* Filters */
+    .filters-row { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; align-items: center; }
+    .filter-btn {
+      padding: 8px 18px; border: 1.5px solid var(--border); border-radius: 100px;
+      font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; cursor: pointer;
+      background: white; color: var(--mid); transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--blush); color: var(--dark); background: var(--blush-light); }
+    .refresh-btn {
+      margin-left: auto; padding: 8px 18px; background: var(--cream); border: 1.5px solid var(--border);
+      border-radius: 100px; font-size: 0.82rem; cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; color: var(--dark);
+    }
+    .refresh-btn:hover { border-color: var(--blush); }
+
+    /* Table */
+    .orders-table-wrap { background: white; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: var(--cream); border-bottom: 1px solid var(--border); }
+    th {
+      padding: 14px 18px; text-align: left; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); white-space: nowrap;
+    }
+    td { padding: 16px 18px; border-bottom: 1px solid var(--border); font-size: 0.88rem; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--cream); }
+
+    .order-number { font-weight: 600; font-size: 0.82rem; color: var(--mid); font-family: 'Cormorant Garamond', serif; font-size: 1rem; }
+    .customer-name { font-weight: 600; color: var(--dark); }
+    .customer-phone { font-size: 0.78rem; color: var(--mid); margin-top: 2px; }
+
+    /* Color dot */
+    .color-dot {
+      display: inline-flex; align-items: center; gap: 8px; font-weight: 500;
+    }
+    .color-dot-circle {
+      width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.1);
+      flex-shrink: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    /* Garnish badge */
+    .garnish-tag {
+      display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem;
+      background: var(--cream); border: 1px solid var(--border); border-radius: 100px;
+      padding: 4px 10px; font-weight: 500;
+    }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 100px;
+    }
+    .status-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+    .status-nouvelle { background: #EEF2FF; color: #3730A3; }
+    .status-nouvelle::before { background: #6366F1; }
+    .status-en_preparation { background: var(--orange-light); color: var(--orange); }
+    .status-en_preparation::before { background: var(--orange); }
+    .status-terminee { background: var(--green-light); color: var(--green); }
+    .status-terminee::before { background: var(--green); }
+
+    /* Status select */
+    .status-select {
+      padding: 6px 10px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 0.82rem; background: white;
+      cursor: pointer; transition: border-color 0.2s; color: var(--dark);
+    }
+    .status-select:focus { outline: none; border-color: var(--blush); }
+
+    .price-val { font-weight: 600; font-size: 0.95rem; }
+    .date-val { font-size: 0.8rem; color: var(--mid); }
+
+    .del-btn {
+      padding: 6px 10px; background: none; border: 1.5px solid var(--border);
+      border-radius: 8px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
+      color: var(--mid);
+    }
+    .del-btn:hover { border-color: var(--red); color: var(--red); background: var(--red-light); }
+
+    /* Bag color dots */
+    .bags-cell { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .bags-qty-tag {
+      background: var(--cream); border: 1px solid var(--border); border-radius: 100px;
+      padding: 3px 10px; font-size: 0.75rem; font-weight: 600; color: var(--dark); flex-shrink: 0;
+    }
+    .bags-dots { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+    .bag-dot-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 2px; position: relative;
+    }
+    .bag-dot {
+      width: 20px; height: 20px; border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      border: 2px solid rgba(255,255,255,0.8);
+      flex-shrink: 0; cursor: default;
+      transition: transform 0.15s;
+    }
+    .bag-dot:hover { transform: scale(1.3); }
+    .bag-dot-num {
+      font-size: 0.6rem; font-weight: 700; color: var(--mid);
+      line-height: 1;
+    }
+    .bag-dot-wrap[title]:hover::after {
+      content: attr(title);
+      position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      background: var(--dark); color: white; font-size: 0.68rem;
+      padding: 4px 8px; border-radius: 6px; white-space: nowrap; z-index: 10;
+      pointer-events: none;
+    }
+
+    .empty-state {
+      text-align: center; padding: 60px 20px; color: var(--mid);
+    }
+    .empty-state .emoji { font-size: 3rem; margin-bottom: 12px; }
+    .empty-state p { font-size: 0.9rem; }
+
+    /* Toast */
+    .admin-toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--dark); color: white; padding: 14px 22px;
+      border-radius: 12px; font-size: 0.85rem; font-weight: 500;
+      opacity: 0; transform: translateY(10px); transition: all 0.3s; pointer-events: none; z-index: 1000;
+    }
+    .admin-toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .admin-body { padding: 24px 16px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .admin-nav { padding: 14px 16px; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN SCREEN ── -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">✦ Bento Lab</div>
+    <div class="login-sub">Panneau d'administration</div>
+    <input class="login-input" type="password" id="login-pwd" placeholder="Mot de passe admin" autocomplete="current-password"/>
+    <button class="login-btn" id="login-btn">Accéder au panel →</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<div id="admin-panel">
+  <nav class="admin-nav">
+    <div class="admin-nav-brand">✦ Bento<span>Lab</span> Admin</div>
+    <div class="admin-nav-right">
+      <span style="font-size:0.82rem;color:var(--mid)" id="admin-date"></span>
+      <button class="logout-btn" id="logout-btn">Se déconnecter</button>
+    </div>
+  </nav>
+
+  <div class="admin-body">
+    <div class="admin-header">
+      <div class="admin-title">Commandes</div>
+      <div class="admin-subtitle">Gérez toutes les commandes Bento Lab en temps réel</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-val" id="stat-total">—</div>
+        <div class="stat-lbl">Total commandes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="stat-new">—</div>
+        <div class="stat-lbl">Nouvelles</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="stat-prep">—</div>
+        <div class="stat-lbl">En préparation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="stat-done">—</div>
+        <div class="stat-lbl">Terminées</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-row">
+      <button class="filter-btn active" data-filter="all">Toutes</button>
+      <button class="filter-btn" data-filter="nouvelle">Nouvelles</button>
+      <button class="filter-btn" data-filter="en_preparation">En préparation</button>
+      <button class="filter-btn" data-filter="terminee">Terminées</button>
+      <button class="refresh-btn" id="refresh-btn">⟳ Actualiser</button>
+    </div>
+
+    <!-- Table -->
+    <div class="orders-table-wrap">
+      <table id="orders-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Client</th>
+            <th>Couleur</th>
+            <th>Garniture</th>
+            <th>Poches & couleurs</th>
+            <th>Prix</th>
+            <th>Date</th>
+            <th>Statut</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="orders-tbody">
+          <tr><td colspan="9"><div class="empty-state"><div class="emoji">⏳</div><p>Chargement…</p></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="admin-toast" id="admin-toast"></div>
+
+<script>
+const API = window.location.origin;
+let adminToken = '';
+let allOrders = [];
+let currentFilter = 'all';
+
+const COLOR_NAMES = {
+  blanc:'Blanc Vanille', noir:'Noir Velours', rouge:'Rouge Velours',
+  bleu:'Bleu Ciel', vert:'Vert Pistache', rose:'Rose Blush',
+  violet:'Violet Lavande', jaune:'Jaune Citron', marron:'Chocolat Chaud'
+};
+const COLOR_HEX = {
+  blanc:'#FFF8F0', noir:'#2C2422', rouge:'#E05555', bleu:'#7BA7CC',
+  vert:'#8EBE84', rose:'#F9C5C5', violet:'#C4A8E8', jaune:'#F5D870', marron:'#8B6347'
+};
+const GARNISH_NAMES = {
+  chocolat:'🍫 Chocolat', caramel:'🍯 Caramel', fruits:'🍓 Fruits rouges'
+};
+const STATUS_LABELS = {
+  nouvelle:'Nouvelle', en_preparation:'En préparation', terminee:'Terminée'
+};
+
+// ── Login
+document.getElementById('login-btn').addEventListener('click', doLogin);
+document.getElementById('login-pwd').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+async function doLogin() {
+  const pwd = document.getElementById('login-pwd').value;
+  const errEl = document.getElementById('login-error');
+  try {
+    const res = await fetch(`${API}/api/admin/login`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ password: pwd })
+    });
+    const data = await res.json();
+    if (data.success) {
+      adminToken = data.token;
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      document.getElementById('admin-date').textContent = new Date().toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long' });
+      loadOrders();
+    } else {
+      errEl.textContent = 'Mot de passe incorrect.';
+    }
+  } catch {
+    errEl.textContent = 'Erreur de connexion au serveur.';
+  }
+}
+
+// ── Logout
+document.getElementById('logout-btn').addEventListener('click', () => {
+  adminToken = ''; allOrders = [];
+  document.getElementById('admin-panel').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('login-pwd').value = '';
+});
+
+// ── Load orders
+async function loadOrders() {
+  try {
+    const res = await fetch(`${API}/api/orders`, { headers: {'x-admin-token': adminToken} });
+    if (res.status === 401) { showToast('Session expirée'); return; }
+    allOrders = await res.json();
+    updateStats();
+    renderTable();
+  } catch {
+    showToast('Erreur lors du chargement');
+  }
+}
+
+document.getElementById('refresh-btn').addEventListener('click', loadOrders);
+
+// ── Stats
+function updateStats() {
+  document.getElementById('stat-total').textContent = allOrders.length;
+  document.getElementById('stat-new').textContent = allOrders.filter(o => o.status === 'nouvelle').length;
+  document.getElementById('stat-prep').textContent = allOrders.filter(o => o.status === 'en_preparation').length;
+  document.getElementById('stat-done').textContent = allOrders.filter(o => o.status === 'terminee').length;
+}
+
+// ── Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderTable();
+  });
+});
+
+// ── Render table
+function renderTable() {
+  const tbody = document.getElementById('orders-tbody');
+  const orders = currentFilter === 'all' ? allOrders : allOrders.filter(o => o.status === currentFilter);
+
+  if (orders.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="emoji">🎂</div><p>Aucune commande${currentFilter !== 'all' ? ' dans cette catégorie' : ''} pour le moment.</p></div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = orders.map(o => {
+    const date = new Date(o.createdAt);
+    const dateStr = date.toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric' });
+    const timeStr = date.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+    const dotStyle = `background:${COLOR_HEX[o.color] || '#ccc'}; ${o.color === 'blanc' ? 'border:2px solid #ccc;':'' }`;
+    return `<tr>
+      <td><span class="order-number">${o.orderNumber}</span></td>
+      <td>
+        <div class="customer-name">${escHtml(o.customer)}</div>
+        <div class="customer-phone">${escHtml(o.phone)} · ${escHtml(o.city)}</div>
+      </td>
+      <td><span class="color-dot"><span class="color-dot-circle" style="${dotStyle}"></span>${COLOR_NAMES[o.color] || o.color}</span></td>
+      <td><span class="garnish-tag">${GARNISH_NAMES[o.garnish] || o.garnish}</span></td>
+      <td>
+        <div class="bags-cell">
+          <span class="bags-qty-tag">${o.bags || 2} poche${(o.bags || 2) > 1 ? 's' : ''}</span>
+          <div class="bags-dots">${renderBagDots(o)}</div>
+        </div>
+      </td>
+      <td><span class="price-val">${o.price} Dh</span></td>
+      <td><div class="date-val">${dateStr}</div><div class="date-val">${timeStr}</div></td>
+      <td>
+        <select class="status-select" data-id="${o.id}" onchange="changeStatus(this)">
+          <option value="nouvelle" ${o.status==='nouvelle'?'selected':''}>🔵 Nouvelle</option>
+          <option value="en_preparation" ${o.status==='en_preparation'?'selected':''}>🟠 En préparation</option>
+          <option value="terminee" ${o.status==='terminee'?'selected':''}>🟢 Terminée</option>
+        </select>
+      </td>
+      <td><button class="del-btn" onclick="deleteOrder('${o.id}')">🗑</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Render bag color dots — one per bag with number label and tooltip
+const BAG_COLOR_NAMES_FR = {
+  rose: 'Rose', blanc: 'Blanc', violet: 'Violet', vert: 'Vert',
+  bleu: 'Bleu', jaune: 'Jaune', rouge: 'Rouge', marron: 'Marron', noir: 'Noir'
+};
+
+function renderBagDots(o) {
+  // Support both new bagColors array and legacy bagColor string
+  const colors = Array.isArray(o.bagColors) && o.bagColors.length > 0
+    ? o.bagColors
+    : Array(o.bags || 2).fill(o.bagColor || 'rose');
+
+  return colors.map((c, i) => {
+    const hex = COLOR_HEX[c] || '#ccc';
+    const border = c === 'blanc' ? ';border:2px solid #CCC' : '';
+    const nameFr = BAG_COLOR_NAMES_FR[c] || c;
+    return `<div class="bag-dot-wrap" title="Poche ${i + 1} · ${nameFr}">
+      <div class="bag-dot" style="background:${hex}${border}"></div>
+      <span class="bag-dot-num">${i + 1}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Change status
+async function changeStatus(sel) {
+  const id = sel.dataset.id;
+  const status = sel.value;
+  try {
+    const res = await fetch(`${API}/api/orders/${id}/status`, {
+      method: 'PATCH',
+      headers: {'Content-Type':'application/json', 'x-admin-token': adminToken},
+      body: JSON.stringify({ status })
+    });
+    if (res.ok) {
+      const idx = allOrders.findIndex(o => o.id === id);
+      if (idx !== -1) allOrders[idx].status = status;
+      updateStats();
+      showToast('✅ Statut mis à jour');
+    }
+  } catch { showToast('Erreur mise à jour'); }
+}
+
+// ── Delete order
+async function deleteOrder(id) {
+  if (!confirm('Supprimer cette commande ?')) return;
+  try {
+    const res = await fetch(`${API}/api/orders/${id}`, {
+      method: 'DELETE', headers: {'x-admin-token': adminToken}
+    });
+    if (res.ok) {
+      allOrders = allOrders.filter(o => o.id !== id);
+      updateStats(); renderTable();
+      showToast('🗑 Commande supprimée');
+    }
+  } catch { showToast('Erreur suppression'); }
+}
+
+// ── Toast
+function showToast(msg) {
+  const t = document.getElementById('admin-toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
