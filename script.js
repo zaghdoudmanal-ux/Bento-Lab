@@ -1,20 +1,4 @@
 alert("script chargé"); 
-const supabaseClient = supabase.createClient(
-  "TON_SUPABASE_URL",
-  "TON_SUPABASE_ANON_KEY"
-);
-
-async function saveOrder(payload) {
-  const { error } = await supabaseClient
-    .from("orders")
-    .insert([payload]);
-
-  if (error) {
-    alert("Erreur commande");
-    console.log(error);
-  } else {
-    showConfirmation({}, payload.customer, payload.price);
-  }
 }
 // =============================================
 // BENTO LAB — Full Interactive Script
@@ -658,8 +642,10 @@ async function submitOrder() {
 
   try {
    try {
-     saveOrder(payload);
-return;
+    const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+orders.push(payload);
+localStorage.setItem("orders", JSON.stringify(orders));
+showConfirmation(...);
 
 } catch (e) {
   console.log("Erreur commande:", e);
