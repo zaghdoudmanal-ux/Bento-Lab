@@ -743,57 +743,60 @@ async function submitOrder() {
     alert("Merci de remplir tous les champs obligatoires.");
     return;
   }
-const btn = document.getElementById("btn-submit-order");
 
-if (btn) {
-  btn.disabled = true;
-  btn.textContent = "⏳ Envoi...";
+  const btn = document.getElementById("btn-submit-order");
+
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "⏳ Envoi...";
+  }
+
+  try {
+    const firstCake = checkoutCakes?.[0] || {};
+
+    const { error } = await window.supabaseClient
+      .from("Orders")
+      .insert([
+        {
+          customer: name,
+          phone,
+          address,
+          city,
+          notes,
+
+          color: firstCake.color || state.color,
+          garnish: firstCake.garnish || state.garnish,
+          bags: firstCake.bags || state.bags,
+          bagColors: firstCake.bagColors || state.bagColors,
+
+          extras: state.extras,
+          price: totalPrice,
+
+          packSize: checkoutCakes.length > 1 ? checkoutCakes.length : null,
+          cakes: checkoutCakes.length > 1 ? checkoutCakes : null,
+        }
+      ]);
+
+    if (error) throw error;
+
+    alert("✅ Commande envoyée avec succès !");
+
+    document.getElementById("f-name").value = "";
+    document.getElementById("f-phone").value = "";
+    document.getElementById("f-address").value = "";
+    document.getElementById("f-city").value = "";
+
+    const notesField = document.getElementById("f-notes");
+    if (notesField) notesField.value = "";
+
+  } catch (err) {
+    console.log("SUPABASE ERROR FULL:", err);
+    alert(err.message);
+  }
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = "✅ Confirmer ma commande";
+  }
 }
-
-try {
-  const firstCake = checkoutCakes?.[0] || {};
-
-  const { error } = await window.supabaseClient
-    .from("Orders")
-    .insert([
-      {
-        customer: name,
-        phone,
-        address,
-        city,
-        notes,
-
-        color: firstCake.color || state.color,
-        garnish: firstCake.garnish || state.garnish,
-        bags: firstCake.bags || state.bags,
-        bagColors: firstCake.bagColors || state.bagColors,
-
-        extras: state.extras,
-        price: totalPrice,
-
-        packSize: checkoutCakes.length > 1 ? checkoutCakes.length : null,
-        cakes: checkoutCakes.length > 1 ? checkoutCakes : null,
-      }
-   });
-
-  if (error) throw error;
-
-  alert("✅ Commande envoyée avec succès !");
-
-  document.getElementById("f-name").value = "";
-  document.getElementById("f-phone").value = "";
-  document.getElementById("f-address").value = "";
-  document.getElementById("f-city").value = "";
-
-  const notesField = document.getElementById("f-notes");
-  if (notesField) notesField.value = "";
-
-} catch (err) {
-  console.log("SUPABASE ERROR FULL:", err);
-  alert(err.message);
-}
-
-if (btn) {
-  btn.disabled = false;
-  btn.textContent = "✅ Confirmer ma commande";
 }
