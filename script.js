@@ -1,7 +1,9 @@
-const supabaseUrl = "COLLE_URL_ICI";
-const supabaseKey = "COLLE_ANON_KEY_ICI";
+const supabaseUrl = "https://erniigvhxsimopinespt.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVybmlpZ3ZoeHNpbW9waW5lc3B0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMjgzMDMsImV4cCI6MjA5MjkwNDMwM30.ixXFtFVf0Wi6U0CFzUXVEkXllNY7k1W_S_JrgxxkHXI";
 
-console.log("Supabase désactivé test");
+window.supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+console.log("Supabase OK");
 // =============================================
 // BENTO LAB — Full Interactive Script
 // =============================================
