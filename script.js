@@ -602,6 +602,7 @@ function showCheckoutForm() {
 }
 
 // ─── SUBMIT ORDER TO API ─────────────────────────────────────────────────────
+console.log("ENTER submitOrder");
 async function submitOrder() {
   const name    = document.getElementById('f-name')?.value.trim();
   const phone   = document.getElementById('f-phone')?.value.trim();
@@ -630,6 +631,7 @@ async function submitOrder() {
   (s, c) => s + (c?.price || 0),
   0
 );
+  console.log("TOTAL PRICE =", totalPrice);
   const firstCake = checkoutCakes[0] || {};
 
   const payload = {
