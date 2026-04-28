@@ -723,6 +723,79 @@ function launchConfetti() {
   }
   draw();
 }
+// ─── SYSTÈME COMMANDE SUPABASE ─────────────────────────────
+
+// remplace ici par le vrai id du bouton si besoin
+const orderBtn = document.querySelector("button");
+
+if (orderBtn && orderBtn.textContent.includes("Confirmer ma commande")) {
+  orderBtn.addEventListener("click", submitOrder);
+}
+
+async function submitOrder(e) {
+  e.preventDefault();
+
+  const name =
+    document.getElementById("f-name")?.value.trim() || "";
+
+  const phone =
+    document.getElementById("f-phone")?.value.trim() || "";
+
+  const address =
+    document.getElementById("f-address")?.value.trim() || "";
+
+  const city =
+    document.getElementById("f-city")?.value || "";
+
+  const notes =
+    document.getElementById("f-notes")?.value.trim() || "";
+
+  if (!name || !phone || !address || !city) {
+    alert("Merci de remplir tous les champs obligatoires.");
+    return;
+  }
+
+  const btn = orderBtn;
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "⏳ Envoi...";
+  }
+
+  try {
+    const { error } = await window.supabaseClient
+      .from("orders")
+      .insert([
+        {
+          customer: name,
+          phone: phone,
+          address: address,
+          city: city,
+          notes: notes
+        }
+      ]);
+
+    if (error) throw error;
+
+    alert("✅ Commande envoyée avec succès !");
+
+    document.getElementById("f-name").value = "";
+    document.getElementById("f-phone").value = "";
+    document.getElementById("f-address").value = "";
+    document.getElementById("f-city").value = "";
+    if (document.getElementById("f-notes")) {
+      document.getElementById("f-notes").value = "";
+    }
+
+  } catch (err) {
+    console.log("Erreur Supabase :", err);
+    alert("❌ Erreur lors de l'envoi de la commande.");
+  }
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = "✅ Confirmer ma commande";
+  }
+}
 
 
 
