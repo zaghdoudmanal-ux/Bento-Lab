@@ -743,15 +743,14 @@ async function submitOrder() {
     alert("Merci de remplir tous les champs obligatoires.");
     return;
   }
+const btn = document.getElementById("btn-submit-order");
 
-  const btn = document.getElementById("btn-submit-order");
+if (btn) {
+  btn.disabled = true;
+  btn.textContent = "⏳ Envoi...";
+}
 
-  if (btn) {
-    btn.disabled = true;
-    btn.textContent = "⏳ Envoi...";
-  }
-
-  try {
+try {
   const firstCake = checkoutCakes?.[0] || {};
 
   const { error } = await window.supabaseClient
@@ -777,35 +776,24 @@ async function submitOrder() {
       }
     ]);
 
-  if (error) {
-    console.error("SUPABASE ERROR:", error);
-  }
+  if (error) throw error;
+
+  alert("✅ Commande envoyée avec succès !");
+
+  document.getElementById("f-name").value = "";
+  document.getElementById("f-phone").value = "";
+  document.getElementById("f-address").value = "";
+  document.getElementById("f-city").value = "";
+
+  const notesField = document.getElementById("f-notes");
+  if (notesField) notesField.value = "";
 
 } catch (err) {
-  console.error("CATCH ERROR:", err);
-}
-      ]);
-
-    if (error) throw error;
-
-    alert("✅ Commande envoyée avec succès !");
-
-    document.getElementById("f-name").value = "";
-    document.getElementById("f-phone").value = "";
-    document.getElementById("f-address").value = "";
-    document.getElementById("f-city").value = "";
-    if (document.getElementById("f-notes")) {
-      document.getElementById("f-notes").value = "";
-    }
-
-  } catch (err) {
   console.log("SUPABASE ERROR FULL:", err);
   alert(err.message);
 }
 
-  if (btn) {
-    btn.disabled = false;
-    btn.textContent = "✅ Confirmer ma commande";
-  }
+if (btn) {
+  btn.disabled = false;
+  btn.textContent = "✅ Confirmer ma commande";
 }
-
