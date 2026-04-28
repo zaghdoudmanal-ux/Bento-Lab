@@ -722,7 +722,16 @@ function launchConfetti() {
   }
   draw();
 }
-console.log("Supabase OK");
+async function testSupabase() {
+  const { data, error } = await window.supabaseClient
+    .from("orders")
+    .select("*")
+    .limit(1);
+
+  console.log("test supabase:", data, error);
+}
+
+testSupabase();
 
 
 
