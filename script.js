@@ -183,7 +183,6 @@ function renderBags() {
     wrap.innerHTML = makeBagSVG(col);
     stage.appendChild(wrap);
   }
-}
 
 // ── COLOR LABEL MAP ─────────────────────────────────────────────────────────
 const COLOR_HEX_MAP = {
@@ -234,8 +233,6 @@ function renderPerBagPickers() {
       renderPerBagPickers(); // re-render to update selections
       renderSelectedBagColors();
     });
-  });
-}
 
 function renderSelectedBagColors() {
   const dotsHtml = state.bagColors.slice(0, state.bags).map(c =>
@@ -268,7 +265,6 @@ function renderPrice() {
     } else {
       extraLine.style.display = 'none';
     }
-  }
   // Update checkout total if open
   const cfp = document.getElementById('checkout-final-price');
   if (cfp) cfp.textContent = price + ' Dh';
@@ -286,8 +282,6 @@ function renderBagsCount() {
     } else {
       badge.style.display = 'none';
     }
-  }
-}
 
 function renderLabels() {
   const gl = document.getElementById('garnish-label-text');
@@ -341,7 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => entry.target.classList.add('visible'), delay);
         obs.unobserve(entry.target);
       }
-    });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   scrollEls.forEach(el => obs.observe(el));
 
@@ -351,7 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const t = document.querySelector(a.getAttribute('href'));
       if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: 'smooth' }); }
     });
-  });
 
   // Parallax hero
   window.addEventListener('scroll', () => {
@@ -667,7 +659,6 @@ try {
     if (btn) { btn.textContent = '✅ Confirmer ma commande'; btn.disabled = false; }
     alert('Une erreur est survenue : ' + err.message);
   }
-}
 
 function showConfirmation(order, name, total) {
   const form = document.getElementById('checkout-form');
