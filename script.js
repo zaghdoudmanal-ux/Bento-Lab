@@ -1,6 +1,13 @@
 // =============================================
 // BENTO LAB — Full Interactive Script
 // =============================================
+const SUPABASE_URL = "https://erniigvhxsimopinespt.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVybmlpZ3ZoeHNpbW9waW5lc3B0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMjgzMDMsImV4cCI6MjA5MjkwNDMwM30.ixXFtFVf0Wi6U0CFzUXVEkXllNY7k1W_S_JrgxxkHXI";
+
+window.supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 // ─── CAKE COLOR DATA ───────────────────────────────────────────────────────
 const CAKE_COLORS = {
