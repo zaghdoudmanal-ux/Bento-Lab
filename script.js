@@ -644,19 +644,21 @@ async function submitOrder() {
     cakes: checkoutCakes.length > 1 ? checkoutCakes : null,
   };
 
-  try {
-    const { data, error } = await window.supabaseClient
-  .from("orders")
-  .insert([order]);
+try {
+  const { data, error } = await window.supabaseClient
+    .from("orders")
+    .insert([order]);
 
-if (error) {
-  console.log(error);
-    }
+  if (error) {
+    console.log("Erreur Supabase:", error);
+    throw new Error(error.message);
+  }
 
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'Erreur serveur');
-    }
+  console.log("Commande envoyée:", data);
+
+} catch (err) {
+  console.log("Erreur:", err.message);
+}
 
     const { order } = await res.json();
     showConfirmation(order, name, totalPrice);
