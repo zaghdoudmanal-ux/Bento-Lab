@@ -777,9 +777,9 @@ async function submitOrder() {
     }
 
   } catch (err) {
-    console.log(err);
-    alert("❌ Erreur lors de l'envoi de la commande.");
-  }
+  console.log("SUPABASE ERROR FULL:", err);
+  alert(err.message);
+}
 
   if (btn) {
     btn.disabled = false;
