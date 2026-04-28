@@ -626,7 +626,10 @@ async function submitOrder() {
   if (btn) { btn.textContent = '⏳ Envoi en cours…'; btn.disabled = true; }
 
   // Build order payload (handle single or pack)
-  const totalPrice = checkoutCakes.reduce((s, c) => s + c.price, 0);
+ const totalPrice = (checkoutCakes || []).reduce(
+  (s, c) => s + (c?.price || 0),
+  0
+);
   const firstCake = checkoutCakes[0] || {};
 
   const payload = {
