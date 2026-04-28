@@ -774,7 +774,7 @@ try {
         packSize: checkoutCakes.length > 1 ? checkoutCakes.length : null,
         cakes: checkoutCakes.length > 1 ? checkoutCakes : null,
       }
-    ]);
+   });
 
   if (error) throw error;
 
