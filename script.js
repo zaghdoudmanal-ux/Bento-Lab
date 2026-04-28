@@ -760,7 +760,15 @@ async function submitOrder() {
           phone,
           address,
           city,
-          notes
+          notes, 
+          color: firstCake.color || state.color,
+          garnish: firstCake.garnish || state.garnish,
+          bags: firstCake.bags || state.bags,
+          bagColors: firstCake.bagColors || state.bagColors,
+          extras: state.extras,
+          price: totalPrice,
+          packSize: checkoutCakes.length > 1 ? checkoutCakes.length : null,
+          cakes: checkoutCakes.length > 1 ? checkoutCakes : null,
         }
       ]);
 
