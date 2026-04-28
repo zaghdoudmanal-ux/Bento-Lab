@@ -799,4 +799,3 @@ async function submitOrder() {
     btn.textContent = "✅ Confirmer ma commande";
   }
 }
-}
