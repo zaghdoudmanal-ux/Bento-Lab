@@ -645,7 +645,9 @@ async function submitOrder() {
   };
 
   try {
-    const res = await fetch('/api/orders', {
+    const res = await window.supabaseClient
+  .from("orders")
+  .insert([order])
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
