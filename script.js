@@ -592,7 +592,7 @@ function showCheckoutForm() {
   if (btn) { btn.textContent = '✅ Confirmer ma commande'; btn.disabled = false; }
 }
 
-// ─── SUBMIT ORDER TO API ─────────────────────────────────────────────────────
+// ─── SUBMIT ORDER ─────────────────────────────────────────────────────
 async function submitOrder() {
   const name    = document.getElementById('f-name')?.value.trim();
   const phone   = document.getElementById('f-phone')?.value.trim();
@@ -651,14 +651,6 @@ try {
 } catch (err) {
   console.log("Erreur:", err.message);
 }
-
-    const { order } = await res.json();
-    showConfirmation(order, name, totalPrice);
-
-  } catch (err) {
-    if (btn) { btn.textContent = '✅ Confirmer ma commande'; btn.disabled = false; }
-    alert('Une erreur est survenue : ' + err.message);
-  }
 
 function showConfirmation(order, name, total) {
   const form = document.getElementById('checkout-form');
@@ -729,17 +721,21 @@ async function testSupabase() {
 testSupabase();
 
 async function sendOrder(order) {
-  const { data, error } = await window.supabaseClient
-    .from("orders")
-    .insert([order]);
-  
-}
-  if (error) {
-    console.log("Erreur Supabase:", error);
-  } else {
-    console.log("Commande envoyée:", data);
-  }
+  try {
+    const { data, error } = await window.supabaseClient
+      .from("orders")
+      .insert([order]);
 
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(data);
+    }
+
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 // ⚠️ IMPORTANT : ne laisse pas une fonction vide ouverte
 function handleOrder() {
