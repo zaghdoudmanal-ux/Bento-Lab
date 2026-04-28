@@ -724,7 +724,7 @@ async function sendOrder(order) {
   try {
     const { data, error } = await window.supabaseClient
       .from("orders")
-      .insert([order]);
+      .insert([payload]);
 
     if (error) {
       console.log(error);
