@@ -645,13 +645,13 @@ async function submitOrder() {
   };
 
   try {
-    const res = await window.supabaseClient
+    const { data, error } = await window.supabaseClient
   .from("orders")
-  .insert([order])
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+  .insert([order]);
+
+if (error) {
+  console.log(error);
+    }
 
     if (!res.ok) {
       const err = await res.json();
