@@ -751,25 +751,39 @@ async function submitOrder() {
     btn.textContent = "⏳ Envoi...";
   }
 
-  try {
-    const { error } = await window.supabaseClient
-      .from("Orders")
-      .insert([
-        {
-          customer: name,
-          phone,
-          address,
-          city,
-          notes, 
-          color: firstCake.color || state.color,
-          garnish: firstCake.garnish || state.garnish,
-          bags: firstCake.bags || state.bags,
-          bagColors: firstCake.bagColors || state.bagColors,
-          extras: state.extras,
-          price: totalPrice,
-          packSize: checkoutCakes.length > 1 ? checkoutCakes.length : null,
-          cakes: checkoutCakes.length > 1 ? checkoutCakes : null,
-        }
+  ttry {
+  const firstCake = checkoutCakes?.[0] || {};
+
+  const { error } = await window.supabaseClient
+    .from("Orders")
+    .insert([
+      {
+        customer: name,
+        phone,
+        address,
+        city,
+        notes,
+
+        color: firstCake.color || state.color,
+        garnish: firstCake.garnish || state.garnish,
+        bags: firstCake.bags || state.bags,
+        bagColors: firstCake.bagColors || state.bagColors,
+
+        extras: state.extras,
+        price: totalPrice,
+
+        packSize: checkoutCakes.length > 1 ? checkoutCakes.length : null,
+        cakes: checkoutCakes.length > 1 ? checkoutCakes : null,
+      }
+    ]);
+
+  if (error) {
+    console.error("SUPABASE ERROR:", error);
+  }
+
+} catch (err) {
+  console.error("CATCH ERROR:", err);
+}
       ]);
 
     if (error) throw error;
