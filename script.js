@@ -748,7 +748,7 @@ async function sendOrder(order) {
   } else {
     console.log("Commande envoyée:", data);
   }
-}
+
 
 // ⚠️ IMPORTANT : ne laisse pas une fonction vide ouverte
 function handleOrder() {
