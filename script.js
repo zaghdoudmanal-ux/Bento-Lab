@@ -731,7 +731,18 @@ async function testSupabase() {
   console.log("test supabase:", data, error);
 }
 
-testSupabase();
+testSupabase();    
+async function sendOrder(order) {
+  const { data, error } = await window.supabaseClient
+    .from("orders")
+    .insert([order]);
+
+  if (error) {
+    console.log("Erreur Supabase:", error);
+  } else {
+    console.log("Commande envoyée:", data);
+  }
+}
 
 
 
