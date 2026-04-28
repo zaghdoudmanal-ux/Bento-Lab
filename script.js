@@ -743,6 +743,30 @@ async function sendOrder(order) {
     console.log("Commande envoyée:", data);
   }
 }
+function handleOrder() {
 
+  const order = {
+    name: document.getElementById("name")?.value,
+    phone: document.getElementById("phone")?.value,
+    message: document.getElementById("message")?.value,
+
+    color: state.selectedColor,
+    garnish: state.selectedGarnish,
+    bagColors: state.bagColors
+  };
+
+  window.supabaseClient
+    .from("orders")
+    .insert([order])
+    .then(({ data, error }) => {
+      if (error) {
+        console.log("Erreur:", error);
+      } else {
+        console.log("Commande envoyée:", data);
+        alert("Commande envoyée 🎉");
+      }
+    });
+}
+document.querySelector("confirmer ma commande").addEventListener("click", handleOrder);
 
 
