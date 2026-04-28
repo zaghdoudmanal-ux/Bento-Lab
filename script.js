@@ -1,7 +1,7 @@
 const supabaseUrl = "COLLE_URL_ICI";
 const supabaseKey = "COLLE_ANON_KEY_ICI";
 
-window.supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+console.log("Supabase désactivé test");
 // =============================================
 // BENTO LAB — Full Interactive Script
 // =============================================
