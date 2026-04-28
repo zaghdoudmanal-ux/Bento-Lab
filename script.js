@@ -751,7 +751,7 @@ async function submitOrder() {
     btn.textContent = "⏳ Envoi...";
   }
 
-  ttry {
+  try {
   const firstCake = checkoutCakes?.[0] || {};
 
   const { error } = await window.supabaseClient
