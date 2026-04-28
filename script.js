@@ -1,4 +1,8 @@
- // =============================================
+const supabaseUrl = "COLLE_URL_ICI";
+const supabaseKey = "COLLE_ANON_KEY_ICI";
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+// =============================================
 // BENTO LAB — Full Interactive Script
 // =============================================
 
@@ -716,6 +720,7 @@ function launchConfetti() {
   }
   draw();
 }
+console.log("Supabase OK");
 
 
 
