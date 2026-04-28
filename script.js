@@ -753,7 +753,7 @@ async function submitOrder() {
 
   try {
     const { error } = await window.supabaseClient
-      .from("orders")
+      .from("Orders")
       .insert([
         {
           customer: name,
