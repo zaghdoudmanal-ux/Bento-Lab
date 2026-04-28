@@ -724,38 +724,28 @@ function launchConfetti() {
   draw();
 }
 // ─── SYSTÈME COMMANDE SUPABASE ─────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("btn-submit-order");
 
-// remplace ici par le vrai id du bouton si besoin
-const orderBtn = document.querySelector("button");
+  if (!btn) return;
 
-if (orderBtn && orderBtn.textContent.includes("Confirmer ma commande")) {
-  orderBtn.addEventListener("click", submitOrder);
-}
+  btn.addEventListener("click", submitOrder);
+});
 
-async function submitOrder(e) {
-  e.preventDefault();
-
-  const name =
-    document.getElementById("f-name")?.value.trim() || "";
-
-  const phone =
-    document.getElementById("f-phone")?.value.trim() || "";
-
-  const address =
-    document.getElementById("f-address")?.value.trim() || "";
-
-  const city =
-    document.getElementById("f-city")?.value || "";
-
-  const notes =
-    document.getElementById("f-notes")?.value.trim() || "";
+async function submitOrder() {
+  const name = document.getElementById("f-name")?.value.trim();
+  const phone = document.getElementById("f-phone")?.value.trim();
+  const address = document.getElementById("f-address")?.value.trim();
+  const city = document.getElementById("f-city")?.value;
+  const notes = document.getElementById("f-notes")?.value.trim() || "";
 
   if (!name || !phone || !address || !city) {
     alert("Merci de remplir tous les champs obligatoires.");
     return;
   }
 
-  const btn = orderBtn;
+  const btn = document.getElementById("btn-submit-order");
+
   if (btn) {
     btn.disabled = true;
     btn.textContent = "⏳ Envoi...";
@@ -767,10 +757,10 @@ async function submitOrder(e) {
       .insert([
         {
           customer: name,
-          phone: phone,
-          address: address,
-          city: city,
-          notes: notes
+          phone,
+          address,
+          city,
+          notes
         }
       ]);
 
@@ -787,7 +777,7 @@ async function submitOrder(e) {
     }
 
   } catch (err) {
-    console.log("Erreur Supabase :", err);
+    console.log(err);
     alert("❌ Erreur lors de l'envoi de la commande.");
   }
 
@@ -796,6 +786,4 @@ async function submitOrder(e) {
     btn.textContent = "✅ Confirmer ma commande";
   }
 }
-
-
 
