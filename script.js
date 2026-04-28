@@ -1,9 +1,3 @@
-const supabaseUrl = "https://erniigvhxsimopinespt.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVybmlpZ3ZoeHNpbW9waW5lc3B0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMjgzMDMsImV4cCI6MjA5MjkwNDMwM30.ixXFtFVf0Wi6U0CFzUXVEkXllNY7k1W_S_JrgxxkHXI";
-
-window.supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-console.log("Supabase OK");
 // =============================================
 // BENTO LAB — Full Interactive Script
 // =============================================
@@ -183,6 +177,7 @@ function renderBags() {
     wrap.innerHTML = makeBagSVG(col);
     stage.appendChild(wrap);
   }
+}
 
 // ── COLOR LABEL MAP ─────────────────────────────────────────────────────────
 const COLOR_HEX_MAP = {
@@ -233,6 +228,8 @@ function renderPerBagPickers() {
       renderPerBagPickers(); // re-render to update selections
       renderSelectedBagColors();
     });
+  });
+}
 
 function renderSelectedBagColors() {
   const dotsHtml = state.bagColors.slice(0, state.bags).map(c =>
@@ -265,6 +262,7 @@ function renderPrice() {
     } else {
       extraLine.style.display = 'none';
     }
+  }
   // Update checkout total if open
   const cfp = document.getElementById('checkout-final-price');
   if (cfp) cfp.textContent = price + ' Dh';
@@ -282,6 +280,8 @@ function renderBagsCount() {
     } else {
       badge.style.display = 'none';
     }
+  }
+}
 
 function renderLabels() {
   const gl = document.getElementById('garnish-label-text');
@@ -335,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => entry.target.classList.add('visible'), delay);
         obs.unobserve(entry.target);
       }
+    });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   scrollEls.forEach(el => obs.observe(el));
 
@@ -344,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const t = document.querySelector(a.getAttribute('href'));
       if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: 'smooth' }); }
     });
+  });
 
   // Parallax hero
   window.addEventListener('scroll', () => {
@@ -592,7 +594,7 @@ function showCheckoutForm() {
   if (btn) { btn.textContent = '✅ Confirmer ma commande'; btn.disabled = false; }
 }
 
-// ─── SUBMIT ORDER ─────────────────────────────────────────────────────
+// ─── SUBMIT ORDER TO API ─────────────────────────────────────────────────────
 async function submitOrder() {
   const name    = document.getElementById('f-name')?.value.trim();
   const phone   = document.getElementById('f-phone')?.value.trim();
@@ -636,20 +638,25 @@ async function submitOrder() {
     cakes: checkoutCakes.length > 1 ? checkoutCakes : null,
   };
 
-try {
-  const { data, error } = await window.supabaseClient
-    .from("orders")
-    .insert([order]);
+  try {
+    const res = await fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
 
-  if (error) {
-    console.log("Erreur Supabase:", error);
-    throw new Error(error.message);
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Erreur serveur');
+    }
+
+    const { order } = await res.json();
+    showConfirmation(order, name, totalPrice);
+
+  } catch (err) {
+    if (btn) { btn.textContent = '✅ Confirmer ma commande'; btn.disabled = false; }
+    alert('Une erreur est survenue : ' + err.message);
   }
-
-  console.log("Commande envoyée:", data);
-
-} catch (err) {
-  console.log("Erreur:", err.message);
 }
 
 function showConfirmation(order, name, total) {
@@ -709,59 +716,6 @@ function launchConfetti() {
   }
   draw();
 }
-async function testSupabase() {
-  const { data, error } = await window.supabaseClient
-    .from("orders")
-    .select("*")
-    .limit(1);
 
-  console.log("test supabase:", data, error);
-}
 
-testSupabase();
-
-async function sendOrder(order) {
-  try {
-    const { data, error } = await window.supabaseClient
-      .from("orders")
-      .insert([payload]);
-
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(data);
-    }
-
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-// ⚠️ IMPORTANT : ne laisse pas une fonction vide ouverte
-function handleOrder() {
-  console.log("handleOrder appelée");
-}
-  const order = {
-    name: document.getElementById("name")?.value,
-    phone: document.getElementById("phone")?.value,
-    message: document.getElementById("message")?.value,
-
-    color: state.selectedColor,
-    garnish: state.selectedGarnish,
-    bagColors: state.bagColors
-  };
-
-  window.supabaseClient
-    .from("orders")
-    .insert([order])
-    .then(({ data, error }) => {
-      if (error) {
-        console.log("Erreur:", error);
-      } else {
-        console.log("Commande envoyée:", data);
-        alert("Commande envoyée 🎉");
-      }
-    });
-document.querySelector("#confirmer-ma-commande")
-  .addEventListener("click", submitOrder);
 
