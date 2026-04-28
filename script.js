@@ -762,7 +762,6 @@ function handleOrder() {
         alert("Commande envoyée 🎉");
       }
     });
-}
-document.querySelector("confirmer ma commande").addEventListener("click", handleOrder);
-
+document.querySelector("#confirmer-ma-commande")
+  .addEventListener("click", submitOrder);
 
