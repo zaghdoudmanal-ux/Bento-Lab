@@ -755,6 +755,7 @@ async function submitOrder() {
     btn.disabled = true;
     btn.textContent = "⏳ Envoi...";
   }
+  const totalPrice = state.total || 0;
 
   try {
     const firstCake = checkoutCakes?.[0] || {};
